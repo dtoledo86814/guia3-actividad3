@@ -33,22 +33,36 @@ public class EvaluadorPostfijo {
         Stack<Integer> pila = new Stack<>();
         int num1;
         int num2;
-        for(int i =0; i<expresion.size();i++){
+        for(int i =0; i< expresion.size();i++){
             String ex = expresion.get(i);
-            System.out.println("ok for"+ ex);
-            if(ex=="+") {
-                System.out.println(ex);
-                num1 =pila.pop();
-                num2 =pila.pop();
-                pila.push(num2+num1);
-                System.out.println(pila.pop());
+            if(ex.equals("+")||ex.equals("-")||ex.equals("*")||ex.equals("/")) {
+                switch (ex){
+                    case "+":
+                        num1 =pila.pop();
+                        num2 =pila.pop();
+                        pila.push(num2+num1);
+                        break;
+                    case "-":
+                        num1 =pila.pop();
+                        num2 =pila.pop();
+                        pila.push(num2-num1);
+                        break;
+                    case "*":
+                        num1 =pila.pop();
+                        num2 =pila.pop();
+                        pila.push(num2*num1);
+                        break;
+                    case"/":
+                        num1 =pila.pop();
+                        num2 =pila.pop();
+                        pila.push(num2/num1);
+                }
             }
             else {
-                System.out.println(ex);
                 pila.push(Integer.valueOf(ex));
             }
         }
-        return 0;
+        return pila.pop();
     }
 
     /**
